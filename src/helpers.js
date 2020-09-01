@@ -6,9 +6,13 @@ export function getCountry(countryName) {
 
 
 export function passportValidation(passportNumber) {
-    var regEx = "'fjevgrfvb";
-    if (passportNumber.length == 12 || passportNumber.length == 13) {
-        // some more logic to be implemented here
+    let ukPassportNumberRegex = /^[B]+([0-9]{3})+([A-z]{2})(\w{7})$/;
+    let GermanyPassportNumberRegex = /^[A]+([A-z ]{2})+(\w{9})$/;
+
+    if (ukPassportNumberRegex.test(passportNumber)) {
+        return "UK";
+    }
+    else if (GermanyPassportNumberRegex.test(passportNumber)) {
         return "GERMANY";
     }
     else {

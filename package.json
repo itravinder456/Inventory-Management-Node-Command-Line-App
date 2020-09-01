@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "bin": {
     "@ravinder/create-project": "bin/command-line-project",
-    "command-line-project": "bin/command-line-project"
+    "command-line-project": "bin/command-line-project",
+    "inventory-management": "bin/command-line-project"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +16,8 @@
   },
   "keywords": [
     "cli",
-    "temp-project"
+    "temp-project",
+    "inventory-management"
   ],
   "author": "",
   "license": "ISC",

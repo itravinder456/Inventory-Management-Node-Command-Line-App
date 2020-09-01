@@ -70,7 +70,7 @@ function process_everything_from_here() {
         for (let index = masksQuantityFromLocalInventory; index <= conditionLoop; index++) {
             maskSalePrice = findMinimalSolution(index, (orderDetails_obj.masks - index), orderDetails_obj, localInventory, secondaryInventory, "maskSalePrice");
             if (index == masksQuantityFromLocalInventory) {
-                minimalCost.masks.totalSalePrice = maskSalePrice.totalSalePrice;
+                minimalCost.masks = maskSalePrice;
             }
             if (maskSalePrice.totalSalePrice < minimalCost.masks.totalSalePrice) {
                 minimalCost.masks = maskSalePrice;
@@ -88,7 +88,7 @@ function process_everything_from_here() {
         for (let index = glovesQuantityFromLocalInventory; index <= conditionLoopGloves; index++) {
             glovesSalePrice = findMinimalSolution(index, (orderDetails_obj.gloves - index), orderDetails_obj, localInventory, secondaryInventory, "glovesSalePrice");
             if (index == glovesQuantityFromLocalInventory) {
-                minimalCost.gloves.totalSalePrice = glovesSalePrice.totalSalePrice;
+                minimalCost.gloves = glovesSalePrice;
             }
             if (glovesSalePrice.totalSalePrice < minimalCost.gloves.totalSalePrice) {
                 minimalCost.gloves = glovesSalePrice;
