@@ -1,0 +1,26 @@
+{
+  "name": "@ravinder/command-line-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "bin": {
+    "@ravinder/create-project": "bin/command-line-project",
+    "command-line-project": "bin/command-line-project"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "cli",
+    "temp-project"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esm": "^3.2.25",
+    "inquirer": "^7.3.3"
+  }
+}
