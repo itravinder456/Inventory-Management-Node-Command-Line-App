@@ -1,3 +1,11 @@
+// version     Date             type
+// 1.0         Sep-02-2020     newly created
+
+/**
+ * Everything from inventory is globally defined. We can change them as per our requirement 
+ * Dynamic configurations like transportCost,discountPercentage,Quantity and salePrice.
+ */
+
 exports.inventoryConfig = {
     UK: {
         inventoryLocation: "UK",
@@ -15,5 +23,5 @@ exports.inventoryConfig = {
     }
 }
 
-exports.shippingCost = 400;
+exports.transportCost = 400;
 exports.discountPercentage = 20;
