@@ -39,14 +39,14 @@ function process_everything_from_here() {
              */
             if (!IsPassportAvailbale && orderDetails.length === 5) {
                 orderDetails_obj.purchaseCountry = (orderDetails[0]).toUpperCase();
-                orderDetails_obj[orderDetails[1].toLowerCase()] = orderDetails[2];
-                orderDetails_obj[orderDetails[3].toLowerCase()] = orderDetails[4];
+                orderDetails_obj[orderDetails[1].toLowerCase()] = Number(orderDetails[2]);
+                orderDetails_obj[orderDetails[3].toLowerCase()] = Number(orderDetails[4]);
             }
             else {
                 orderDetails_obj.purchaseCountry = (orderDetails[0]).toUpperCase();
                 orderDetails_obj.PassportNation = IsPassportAvailbale;
-                orderDetails_obj[orderDetails[2].toLowerCase()] = orderDetails[3];
-                orderDetails_obj[orderDetails[4].toLowerCase()] = orderDetails[5];
+                orderDetails_obj[orderDetails[2].toLowerCase()] = Number(orderDetails[3]);
+                orderDetails_obj[orderDetails[4].toLowerCase()] = Number(orderDetails[5]);
             }
 
             if (!orderDetails_obj.purchaseCountry || !orderDetails_obj.mask || !orderDetails_obj.gloves) {
