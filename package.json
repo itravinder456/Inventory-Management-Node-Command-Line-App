@@ -2,27 +2,17 @@
   "name": "@ravinder/command-line-project",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
-  "bin": {
-    "@ravinder/create-project": "bin/command-line-project",
-    "command-line-project": "bin/command-line-project",
-    "inventory-management": "bin/command-line-project"
-  },
+  "main": "src/app.js",
   "scripts": {
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [
-    "cli",
-    "temp-project",
-    "inventory-management"
-  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "esm": "^3.2.25",
     "inquirer": "^7.3.3"
   }
 }

@@ -2,8 +2,8 @@
 // 1.0         Sep-02-2020     newly created
 
 const inquirer = require('inquirer');
-import { passportValidation, findMinimalSolution, prepareAndSendFinalOutputToStdout, prepareAndSendOutOfStockOutputToStdout } from './helpers';
-import { inventoryConfig } from './config';
+const helpers = require("./helpers");
+var inventoryConfig = require('./config').inventoryConfig;
 
 
 var questions = [{
@@ -11,12 +11,8 @@ var questions = [{
     name: 'orderDetails',
     message: "Enter order details:",
 }]
-
-// This function will be called on project starting and process everything from here
-export function cli(args) {
-    process_everything_from_here();
-}
-
+//directly calling the processing function from here. The function might kept outside but representational purpose did everything inside a function
+process_everything_from_here();
 
 function process_everything_from_here() {
     inquirer.prompt(questions).then(answers => {  // Command line arguments will be recieved from here
@@ -33,7 +29,7 @@ function process_everything_from_here() {
 
             let orderDetails_obj = {}
 
-            let IsPassportAvailbale = passportValidation(orderDetails[1]);
+            let IsPassportAvailbale = helpers.passportValidation(orderDetails[1]);
             /**
              * If passport is not passed from input list then we will skip the passportnumber
              */
@@ -54,7 +50,6 @@ function process_everything_from_here() {
                 return false;
             }
 
-
             let localInventory = inventoryConfig[orderDetails_obj.purchaseCountry]; //get local inventory by the given purchase country
             let secondaryInventory;
             //get secondary(other country inventory) inventory by the localinventory
@@ -68,7 +63,7 @@ function process_everything_from_here() {
 
             // validate inventory stock. if the order quantity exceeded the quantiity of sum of all inventories then return as "Out Of Stock" message.
             if ((orderDetails_obj.mask > (localInventory.masksQuantity + secondaryInventory.masksQuantity)) || (orderDetails_obj.gloves > (localInventory.glovesQuantity + secondaryInventory.glovesQuantity))) {
-                prepareAndSendOutOfStockOutputToStdout();
+                helpers.prepareAndSendOutOfStockOutputToStdout();
                 return false;
             }
             // validate inventory stock END
@@ -86,7 +81,7 @@ function process_everything_from_here() {
             // iterate through each possible quantity from two inventories but the quantity from two inventories should be match to order quantity from user.
             for (let index = masksQuantityFromLocalInventory; index <= loopExitValueM; index++) { // START FOR
 
-                maskSalePrice = findMinimalSolution(index, (orderDetails_obj.mask - index), orderDetails_obj, localInventory, secondaryInventory, "maskSalePrice");
+                maskSalePrice = helpers.findMinimalSolution(index, (orderDetails_obj.mask - index), orderDetails_obj, localInventory, secondaryInventory, "maskSalePrice");
 
                 // Store the first possible minmal price
                 if (index == masksQuantityFromLocalInventory) {
@@ -113,7 +108,7 @@ function process_everything_from_here() {
             // iterate through each possible quantity from two inventories but the quantity from two inventories should be match to order quantity from user.
             for (let index = glovesQuantityFromLocalInventory; index <= loopExitValue; index++) { //START FOR
 
-                glovesSalePrice = findMinimalSolution(index, (orderDetails_obj.gloves - index), orderDetails_obj, localInventory, secondaryInventory, "glovesSalePrice");
+                glovesSalePrice = helpers.findMinimalSolution(index, (orderDetails_obj.gloves - index), orderDetails_obj, localInventory, secondaryInventory, "glovesSalePrice");
 
                 // Store the first possible minmal price
                 if (index == glovesQuantityFromLocalInventory) {
@@ -130,7 +125,7 @@ function process_everything_from_here() {
             // Find minimal price for gloves ? END
 
             // deliver final totoal price to the online user
-            prepareAndSendFinalOutputToStdout(minimalCost);
+            helpers.prepareAndSendFinalOutputToStdout(minimalCost);
 
         } catch (error) {
             console.info("Invalid input.");

@@ -1,7 +1,11 @@
 // version     Date             type
 // 1.0         Sep-02-2020     newly created
 
-import { transportCost, discountPercentage, inventoryConfig } from "./config";
+const inventoryConfig = require("./config").inventoryConfig;
+const discountPercentage = require("./config").discountPercentage;
+const transportCost = require("./config").transportCost;
+
+
 
 /**
  * 
@@ -9,7 +13,7 @@ import { transportCost, discountPercentage, inventoryConfig } from "./config";
  * @function checks with the passport number and validate whether it is valida or not then return country name which it is belongs to
  * @returns {country name} UK/GERMANY
  */
-export function passportValidation(passportNumber) {
+const passportValidation = function (passportNumber) {
     let ukPassportNumberRegex = /^[B]+([0-9]{3})+([A-z]{2})(\w{7})$/; // Manual Rgular Expression for UK Passport Number
     let GermanyPassportNumberRegex = /^[A]+([A-z ]{2})+(\w{9})$/; // Manual Rgular Expression for GERMANY Passport Number
 
@@ -33,7 +37,7 @@ export function passportValidation(passportNumber) {
  * @param {Masks or gloves} itemType 
  * @returns {total salePrice for selected quantity from both inventories}
  */
-export function findMinimalSolution(localInventoryQuantity, secondaryInventoryQuantity, orderDetailsObj, localInventory, secondaryInventory, itemType) {
+const findMinimalSolution = function (localInventoryQuantity, secondaryInventoryQuantity, orderDetailsObj, localInventory, secondaryInventory, itemType) {
 
     let totalTransportCost = 0;
 
@@ -65,13 +69,15 @@ export function findMinimalSolution(localInventoryQuantity, secondaryInventoryQu
  * 
  * @param {final order invoice with minimal sale price} invoice 
  */
-export function prepareAndSendFinalOutputToStdout(invoice) {
+const prepareAndSendFinalOutputToStdout = function (invoice) {
     console.log(("", invoice.mask.totalSalePrice + invoice.gloves.totalSalePrice), ':', invoice.mask.UK, ":", invoice.mask.GERMANY, ":", invoice.gloves.UK, ":", invoice.gloves.GERMANY)
 }
 
 /**
  * std error when user ordered quantity exceeded the the inventory quantity of both countries.
  */
-export function prepareAndSendOutOfStockOutputToStdout() {
+const prepareAndSendOutOfStockOutputToStdout = function () {
     console.log('OUT_OF_STOCK:', inventoryConfig['UK'].masksQuantity, ":", inventoryConfig['GERMANY'].masksQuantity, ":", inventoryConfig['UK'].glovesQuantity, ":", inventoryConfig['GERMANY'].glovesQuantity)
 }
+
+module.exports = { passportValidation, findMinimalSolution, prepareAndSendFinalOutputToStdout, prepareAndSendOutOfStockOutputToStdout };

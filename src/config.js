@@ -6,7 +6,7 @@
  * Dynamic configurations like transportCost,discountPercentage,Quantity and salePrice.
  */
 
-exports.inventoryConfig = {
+const inventoryConfig = {
     UK: {
         inventoryLocation: "UK",
         masksQuantity: 100,
@@ -23,5 +23,7 @@ exports.inventoryConfig = {
     }
 }
 
-exports.transportCost = 400;
-exports.discountPercentage = 20;
+const transportCost = 400;
+const discountPercentage = 20;
+
+module.exports = { inventoryConfig, transportCost, discountPercentage }
