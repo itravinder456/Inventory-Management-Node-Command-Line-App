@@ -6,7 +6,7 @@ Follow the below steps to run app on your system:
 
 1.  Move to the project folder "...path/inventory-management-node-command-line-app/src"
 
-2.  run "npm start" or you can go to the subfolder "src" and run "node app".
+2.  run "npm install" then "npm start" or you can go to the subfolder "src" and run "node app".
 
 3.  Test the application with your test cases.
     **_Thats great!_**
